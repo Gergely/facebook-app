@@ -1,2 +1,2 @@
-# facbook-app
+# facebook-app
 Facebook App for osCommerce
