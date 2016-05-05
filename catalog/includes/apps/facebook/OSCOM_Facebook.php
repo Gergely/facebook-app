@@ -42,7 +42,7 @@
       return $countries;
     }
 
-    function log($module, $action, $result, $request, $response, $server = 'live') { //, $is_ipn = false) {
+    function log($module, $action, $result, $request, $response, $server = 'live') {
       global $facebook_login_customer_id;
 
       $do_log = false;
@@ -77,8 +77,6 @@
             if ( function_exists('http_build_query') ) {
               $value = http_build_query($value);
             }
-          } elseif ( (strpos($key, '_nh-dns') !== false) || in_array($key, $filter) ) {
-            $value = '**********';
           }
 
           $response_string .= $key . ': ' . $value . "\n";
@@ -161,14 +159,6 @@
     }
 
     function hasCredentials($module, $type = null) {
-//      $server = @constant('OSCOM_APP_FACEBOOK_' . $module . '_STATUS');
-
-/*       if ( !in_array($server, array('1', '0')) ) {
-        return false;
-      } */
-
-//      $server = ($server == '1') ? 'LIVE' : 'SANDBOX';
-
       if ( $type == 'email') {
         $creds = array('OSCOM_APP_FACEBOOK_SELLER_EMAIL');
       } else {
@@ -196,9 +186,7 @@
       }
     }
 
-//TODO delete $server from parameters
-    function hasApiCredentials($server, $type = null) {
-//      $server = ($server == 'live') ? 'LIVE' : 'SANDBOX';
+    function hasApiCredentials($type = null) {
 
       if ( $type == 'email') {
         $creds = array('OSCOM_APP_FACEBOOK_SELLER_EMAIL');
