@@ -44,7 +44,7 @@
 
       if ( defined('OSCOM_APP_FACEBOOK_LOGIN_STATUS') ) {
         $this->sort_order = OSCOM_APP_FACEBOOK_LOGIN_SORT_ORDER;
-        $this->enabled = in_array(OSCOM_APP_FACEBOOK_LOGIN_STATUS, array('1', '-1'));
+        $this->enabled = (OSCOM_APP_FACEBOOK_LOGIN_STATUS == '1' ? true : false);
 
         if ( OSCOM_APP_FACEBOOK_LOGIN_STATUS == '-1' ) {
           $this->title .= ' [Disabled]';
