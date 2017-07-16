@@ -24,9 +24,9 @@ Create Facebook APP for your site (login)
 
 1. go Facebook developer site (https://developers.facebook.com)
 2. add a new App from right menu
-3. From setting you need (App ID, App Secret, App Domains, Site URL)
-4. Add in App Preview your app for public
-5. in advanced Settings define the Valid OAuth redirect URIs:
+3. From **Settings** menu you need (App ID, App Secret, App Domains, Site URL)
+4. Add in **App Review** menu your app for public
+5. Add in **Facebook Login** menu->Settings->Valid OAuth redirect URIs:
    http(s)://yourdomain/login.php
 
 Support:
