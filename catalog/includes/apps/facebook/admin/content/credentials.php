@@ -46,11 +46,9 @@
 
           </p>
           <div id="versionSelection">
-              <input type="radio" id="versionSelection20" name="version" value="v2.0"<?php echo (OSCOM_APP_FACEBOOK_API_VERSION == 'v2.0' ? ' checked="checked"' : ''); ?>><label for="versionSelection20">v2.0</label>
-              <input type="radio" id="versionSelection21" name="version" value="v2.1"<?php echo (OSCOM_APP_FACEBOOK_API_VERSION == 'v2.1' ? ' checked="checked"' : ''); ?>><label for="versionSelection21">v2.1</label>
-              <input type="radio" id="versionSelection22" name="version" value="v2.2"<?php echo (OSCOM_APP_FACEBOOK_API_VERSION == 'v2.2' ? ' checked="checked"' : ''); ?>><label for="versionSelection22">v2.2</label>
-              <input type="radio" id="versionSelection23" name="version" value="v2.3"<?php echo(OSCOM_APP_FACEBOOK_API_VERSION == 'v2.3' ? ' checked="checked"' : ''); ?>><label for="versionSelection23">v2.3</label>
-              <input type="radio" id="versionSelection25" name="version" value="v2.5"<?php echo (OSCOM_APP_FACEBOOK_API_VERSION == 'v2.5' ? ' checked="checked"' : ''); ?>><label for="versionSelection25">v2.5</label>
+          <?php for ($i=0; $i<11; $i+=1) { ?>
+            <input type="radio" id="versionSelection2<?= $i; ?>" name="version" value="v2.<?= $i; ?>"<?php echo (OSCOM_APP_FACEBOOK_API_VERSION == 'v2.'.(string)$i ? ' checked="checked"' : ''); ?>><label for="versionSelection2<?= $i; ?>">v2.<?= $i; ?></label>
+          <?php } ?>
           </div>
 <script>
 $(function() {
