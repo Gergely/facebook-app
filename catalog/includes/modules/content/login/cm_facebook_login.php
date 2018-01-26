@@ -77,9 +77,11 @@
     public function execute() {
       global $HTTP_GET_VARS, $oscTemplate;
 
+      $OSCOM_login_url = tep_href_link(FILENAME_LOGIN, 'action=facebook_login', 'SSL');
+
       if ( isset($HTTP_GET_VARS['action']) ) {
         if ( $HTTP_GET_VARS['action'] == 'facebook_login' ) {
-          $this->preLogin();
+          $this->preLogin($OSCOM_login_url);
         } elseif ( $HTTP_GET_VARS['action'] == 'facebook_login_process' ) {
           $this->postLogin();
         }
@@ -105,7 +107,7 @@
       $helper = $this->_api->getRedirectLoginHelper();
 
       $permissions = ['email']; // Optional permissions
-      $loginUrl = $helper->getLoginUrl(tep_href_link(FILENAME_LOGIN, 'action=facebook_login', 'SSL'), $permissions);
+      $loginUrl = $helper->getLoginUrl($OSCOM_login_url, $permissions);
 
       ob_start();
       include(DIR_WS_MODULES . 'content/' . $this->group . '/templates/facebook_login.php');
@@ -114,7 +116,7 @@
       $oscTemplate->addContent($template, $this->group);
     }
 
-    private function preLogin() {
+    private function preLogin($OSCOM_login_url) {
       global $HTTP_GET_VARS, $facebook_login_access_token, $facebook_login_customer_id, $sendto, $billto, $messageStack;
 
       $log_text = '';
@@ -126,7 +128,7 @@
         $helper = $this->_api->getRedirectLoginHelper();
 
         try {
-          $accessToken = $helper->getAccessToken();
+          $accessToken = $helper->getAccessToken($OSCOM_login_url);
         } catch(Facebook\Exceptions\FacebookResponseException $e) {
           // When Graph returns an error
           $this->_app->log('FB_LOGIN', 'Graph returns an error', 0, 'GET', $e->getMessage());
